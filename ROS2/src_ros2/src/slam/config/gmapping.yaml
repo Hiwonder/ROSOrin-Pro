@@ -1,0 +1,106 @@
+slam_gmapping:
+  ros__parameters:
+    # --- 1. Basic Configuration (基础配置) ---
+    # Robot base frame (机器人基座坐标系)
+    base_frame: "base_footprint"
+    # Map coordinatbase_footprinte system (地图坐标系)
+    map_frame: "map"
+    # Odometry coordinate system (里程计坐标系)
+    odom_frame: "odom"
+    # Use simulation time (使用仿真时间): Set to true for Gazebo
+    use_sim_time: false
+
+    # --- 2. Map Resolution & Size (地图分辨率与尺寸) ---
+    # Map resolution (地图分辨率): Grid size in meters (e.g., 0.05m = 5cm)
+    delta: 0.05
+    # Initial minimum x-range (初始地图最小X值)
+    xmin: -10.0
+    # Initial minimum y-range (初始地图最小Y值)
+    ymin: -10.0
+    # Initial maximum x-range (初始地图最大X值)
+    xmax: 10.0
+    # Initial maximum y-range (初始地图最大Y值)
+    ymax: 10.0
+    # Occupancy threshold (占用阈值): Probability to consider a cell as occupied (wall)
+    occ_thresh: 0.25
+
+    # --- 3. Laser Scanner Settings (激光雷达设置) ---
+    # Max usable range (最大有效量程): Points within this range are used to build walls
+    maxUrange: 4.0
+    # Max sensor range (传感器最大量程): Points beyond maxUrange but within this are used to clear obstacles
+    maxRange: 6.0
+    # Laser skip (跳过的激光束数量): Increase to save CPU by processing fewer beams
+    lskip: 0
+
+    # --- 4. Scan Matching (扫描匹配/位姿优化) ---
+    # Minimum score (匹配最小得分): Critical! If score < threshold, use odometry instead of scan matching
+    # (In open environments, increase minimum_score (e.g., 50-100). This forces the robot to trust odometry when LiDAR fails to match features.)
+    # (在开阔环境，将 minimum_score 调大（如 50-100），这会强制机器人在激光雷达匹配不到特征时信任里程计。) 
+    minimum_score: 50.0
+    # Sigma (标准差): Used by the greedy endpoint matching
+    sigma: 0.05
+    # Kernel size (内核大小): Search window for the scan matcher
+    kernelSize: 1
+    # Linear search step (线性搜索步长): Optimization step size for translation (m)
+    lstep: 0.05
+    # Angular search step (角度搜索步长): Optimization step size for rotation (rad)
+    astep: 0.05
+    # Iterations (迭代次数): Number of optimization steps for the scan matcher
+    iterations: 5
+    # Likelihood sigma (计算标准差): Standard deviation for the likelihood calculation
+    lsigma: 0.075
+    # Likelihood gain (增益): Smoothing gain for the likelihood evaluation
+    ogain: 3.0
+
+    # --- 5. Update Frequencies (更新频率控制) ---
+    # Map update interval (地图更新间隔): How often to publish the map topic (seconds)
+    map_update_interval: 0.0
+    # Linear update threshold (直线更新阈值): Process scan after moving this distance (m)
+    linearUpdate: 1.0
+    # Angular update threshold (角度更新阈值): Process scan after rotating this angle (rad)
+    angularUpdate: 0.5
+    # Temporal update threshold (时间更新阈值): Process scan after this time regardless of movement (s)
+    temporalUpdate: 1.0
+    # Transform publish period (坐标变换发布周期): Time between TF (map->odom) updates
+    transform_publish_period: 0.05
+
+    # --- 6. Particle Filter (粒子滤波器参数) ---
+    # Number of particles (粒子数量): Higher means more robust but uses more CPU/Memory
+    particles: 30
+    # Resampling threshold (重采样阈值): NEff threshold to trigger resampling
+    resampleThreshold: 0.5
+
+    # --- 7. Odometry Error Model (里程计误差模型/噪声) ---
+    # Translation error from translation (平移运动产生的平移误差)
+    srr: 0.1
+    # Rotation error from translation (平移运动产生的旋转误差)
+    srt: 0.2
+    # Translation error from rotation (旋转运动产生的平移误差)
+    str: 0.1
+    # Rotation error from rotation (旋转运动产生的旋转误差)
+    stt: 0.2
+
+    # --- 8. Likelihood Sampling (采样控制) ---
+    # Linear sampling range (线性采样范围)
+    llsamplerange: 0.01
+    # Linear sampling step (线性采样步长)
+    llsamplestep: 0.01
+    # Angular sampling range (角度采样范围)
+    lasamplerange: 0.005
+    # Angular sampling step (角度采样步长)
+    lasamplestep: 0.005
+
+    # --- 9. QoS Overrides (通信服务质量覆盖) ---
+    qos_overrides:
+      /parameter_events:
+        publisher:
+          depth: 1000
+          durability: "volatile"
+          history: "keep_last"
+          reliability: "reliable"
+      /tf:
+        publisher:
+          depth: 100
+          durability: "volatile"
+          history: "keep_last"
+          reliability: "reliable"

@@ -1,0 +1,55 @@
+navigation_positions:
+  zoo:
+    x: 1.0
+    y: 0.0
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0
+  动物园:
+    x: 1.0
+    y: 0.0
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0
+  library:
+    x: 1.5
+    y: 0.5
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0
+  图书馆:
+    x: 1.5
+    y: 0.5
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0
+  aviation_base:
+    x: 0.0
+    y: 1.0
+    roll: 0.0
+    pitch: 0.0
+    yaw: 90.0
+  航天基地:
+    x: 0.0
+    y: 1.0
+    roll: 0.0
+    pitch: 0.0
+    yaw: 90.0
+  hospital:
+    x: 3.0
+    y: 2.0
+    roll: 0.0
+    pitch: 0.0
+    yaw: 30.0
+  home:
+    x: 0.0
+    y: 0.0
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0
+  家:
+    x: 0.0
+    y: 0.0
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0

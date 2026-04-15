@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="arm" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:arg name="prefix" default="" />
+  <xacro:property name="M_PI"   value="3.1415926535897931"/>
+  <joint
+    name="joint1"
+    type="revolute">
+    <origin
+      xyz="0.0251328065010765 0 0.0774026880954513"
+      rpy="0 0 0" />
+    <parent
+      link="$(arg prefix)base_link" />
+    <child
+      link="$(arg prefix)link1" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-2.09"
+      upper="2.09"
+      effort="1000"
+      velocity="10" />
+  </joint>
+</robot>

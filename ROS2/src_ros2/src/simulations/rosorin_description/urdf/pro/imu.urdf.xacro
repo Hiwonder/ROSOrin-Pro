@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="imu" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:arg name="prefix" default="" />
+  <xacro:property name="M_PI" value="3.1415926535897931"/>
+
+  <link name="$(arg prefix)imu_link">
+    <inertial>
+      <origin
+        xyz="0.000326339719654111 -0.00351781801658763 0.0187735276751056"
+        rpy="0 0 0" />
+      <mass
+        value="0.808717142384399" />
+      <inertia
+        ixx="0.000953043729407075"
+        ixy="8.78702843605923E-07"
+        ixz="4.70183220493712E-06"
+        iyy="0.000811220623674811"
+        iyz="4.14227763073151E-05"
+        izz="0.00147512550296121" />
+    </inertial>
+  </link>
+
+  <joint
+    name="imu_joint"
+    type="fixed">
+    <origin
+      xyz="-0.027258 -5.6404E-05 0.048046"
+      rpy="0 -0.0087266 1.5707" />
+    <parent
+      link="$(arg prefix)base_link" />
+    <child
+      link="$(arg prefix)imu_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+</robot>

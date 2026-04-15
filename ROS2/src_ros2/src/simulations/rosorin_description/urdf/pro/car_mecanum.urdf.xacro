@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="car" xmlns:xacro="http://ros.org/wiki/xacro" >
+  <xacro:arg name="prefix" default="" />
+  <xacro:property name="M_PI"               value="3.1415926535897931"/>
+  <xacro:property name="base_link_mass"     value="1.6" /> 
+  <xacro:property name="base_link_w"        value="0.30"/>
+  <xacro:property name="base_link_h"        value="0.15"/>
+  <xacro:property name="base_link_d"        value="0.10"/>
+
+  <link name="$(arg prefix)base_footprint"/>
+
+  <joint name="base_joint" type="fixed">
+    <parent link="$(arg prefix)base_footprint"/>
+    <child link="$(arg prefix)base_link"/>
+    <origin xyz="0.0 0.0 0.025" rpy="0 0 0"/>
+  </joint>
+
+  <link name="$(arg prefix)base_link">
+    <inertial>
+      <origin
+        xyz="-0.0237400546330076 0.000105827287484879 0.066822140954233"
+        rpy="0 0 0" />
+      <mass
+        value="0.808717142384399" />
+      <inertia
+        ixx="0.00081122049060922"
+        ixy="-5.06387672227193E-07"
+        ixz="-4.14284146512215E-05"
+        iyy="0.000953001506912848"
+        iyz="1.4848181298352E-07"
+        izz="0.00147516785852103" />
+    </inertial>
+
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rosorin_description/meshes/pro/mecanum/base_link.stl" />
+      </geometry>
+      <material name="">
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rosorin_description/meshes/pro/mecanum/base_link.stl" />
+      </geometry>
+    </collision>
+  </link>
+</robot>

@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="gripper" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:arg name="prefix" default="" />
+  <xacro:property name="M_PI"   value="3.1415926535897931"/>
+
+  <link
+    name="$(arg prefix)l_link">
+    <inertial>
+      <origin
+        xyz="0.00148743912658827 0.00341169661084672 0.00471012520857783"
+        rpy="0 0 0" />
+      <mass
+        value="0.00218044330527644" />
+      <inertia
+        ixx="4.02720359212291E-07"
+        ixy="3.34198378263559E-10"
+        ixz="5.68156737571048E-10"
+        iyy="2.1623095083852E-07"
+        iyz="-1.25262871580288E-07"
+        izz="1.89756285706319E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rosorin_description/meshes/pro/gripper/l_link.stl" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rosorin_description/meshes/pro/gripper/l_link.stl" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="l_joint"
+    type="revolute">
+    <origin
+      xyz="0.024 0.014 0.0075"
+      rpy="3.1416 1.5681 3.1416" />
+    <parent
+      link="$(arg prefix)gripper_link" />
+    <child
+      link="$(arg prefix)l_link" />
+    <axis
+      xyz="-1 0 -0.0026676" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="1000"
+      velocity="10" />
+    <mimic
+      joint="r_joint"
+      multiplier="1"
+      offset="0" />
+  </joint>
+
+  <link
+    name="$(arg prefix)r_link">
+    <inertial>
+      <origin
+        xyz="3.12874685205605E-05 -0.00354612415983978 0.00514949484857297"
+        rpy="0 0 0" />
+      <mass
+        value="0.00205911712924402" />
+      <inertia
+        ixx="3.94904126102227E-07"
+        ixy="7.38490943551972E-10"
+        ixz="-1.26593989714032E-09"
+        iyy="2.11639261333732E-07"
+        iyz="1.2112428327253E-07"
+        izz="1.86362082133903E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rosorin_description/meshes/pro/gripper/r_link.stl" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rosorin_description/meshes/pro/gripper/r_link.stl" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="r_joint"
+    type="revolute">
+    <origin
+      xyz="0.024 -0.014 0.0061523"
+      rpy="-0.0038422 1.5647 -0.012569" />
+    <parent
+      link="$(arg prefix)gripper_link" />
+    <child
+      link="$(arg prefix)r_link" />
+    <axis
+      xyz="0.99998 1.524E-05 -0.0060469" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="1000"
+      velocity="10" />
+  </joint>
+
+  <link
+    name="$(arg prefix)l_in_link">
+    <inertial>
+      <origin
+        xyz="0.00597034776510662 0.00932041799710385 0.0111236125891843"
+        rpy="0 0 0" />
+      <mass
+        value="0.000770694679684047" />
+      <inertia
+        ixx="9.79339488419287E-08"
+        ixy="1.24325296468498E-10"
+        ixz="1.51027104705311E-10"
+        iyy="5.77546513196515E-08"
+        iyz="-4.66053058184523E-08"
+        izz="4.1319450328664E-08" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rosorin_description/meshes/pro/gripper/l_in_link.stl" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rosorin_description/meshes/pro/gripper/l_in_link.stl" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="l_in_joint"
+    type="revolute">
+    <origin
+      xyz="0.042974 0.005 0.0075"
+      rpy="3.1416 1.5681 3.1416" />
+    <parent
+      link="$(arg prefix)gripper_link" />
+    <child
+      link="$(arg prefix)l_in_link" />
+    <axis
+      xyz="1 0 0.0026676" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="1000"
+      velocity="10" />
+    <mimic
+      joint="r_joint"
+      multiplier="-1"
+      offset="0" />
+  </joint>
+
+  <link
+    name="$(arg prefix)l_out_link">
+    <inertial>
+      <origin
+        xyz="0.00297829965037884 0.00203214677519615 0.00755647290494355"
+        rpy="0 0 0" />
+      <mass
+        value="0.00342111250174668" />
+      <inertia
+        ixx="7.64461150761982E-07"
+        ixy="-3.387168093057E-10"
+        ixz="1.88717673447383E-09"
+        iyy="7.17069170385372E-07"
+        iyz="1.26981454846648E-07"
+        izz="5.69917196970889E-08" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rosorin_description/meshes/pro/gripper/l_out_link.stl" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rosorin_description/meshes/pro/gripper/l_out_link.stl" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="l_out_joint"
+    type="revolute">
+    <origin
+      xyz="0.0029407 0.018641 0.022223"
+      rpy="0 0 0" />
+    <parent
+      link="$(arg prefix)l_in_link" />
+    <child
+      link="$(arg prefix)l_out_link" />
+    <axis
+      xyz="1 0 0.0026676" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="1000"
+      velocity="10" />
+    <mimic
+      joint="r_joint"
+      multiplier="1"
+      offset="0" />
+  </joint>
+
+  <link
+    name="$(arg prefix)r_in_link">
+    <inertial>
+      <origin
+        xyz="0.00597034615265452 -0.0093204191791146 0.0111236115770927"
+        rpy="0 0 0" />
+      <mass
+        value="0.00077069374465374" />
+      <inertia
+        ixx="9.79339240943491E-08"
+        ixy="-1.24323923307194E-10"
+        ixz="1.51028199204801E-10"
+        iyy="5.77546354280507E-08"
+        iyz="4.66052950953177E-08"
+        izz="4.13194382258245E-08" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rosorin_description/meshes/pro/gripper/r_in_link.stl" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rosorin_description/meshes/pro/gripper/r_in_link.stl" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="r_in_joint"
+    type="revolute">
+    <origin
+      xyz="0.042974 -0.005 0.0075"
+      rpy="3.1416 1.5681 3.1416" />
+    <parent
+      link="$(arg prefix)gripper_link" />
+    <child
+      link="$(arg prefix)r_in_link" />
+    <axis
+      xyz="1 0 0.0026676" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="1000"
+      velocity="10" />
+    <mimic
+      joint="r_joint"
+      multiplier="1"
+      offset="0" />
+  </joint>
+
+  <link
+    name="$(arg prefix)r_out_link">
+    <inertial>
+      <origin
+        xyz="0.00596395964781463 -0.00207383049329325 0.00756447899976997"
+        rpy="0 0 0" />
+      <mass
+        value="0.00342111281237453" />
+      <inertia
+        ixx="7.6446508624845E-07"
+        ixy="7.8016814967912E-12"
+        ixz="1.0004696825877E-09"
+        iyy="7.17066320909273E-07"
+        iyz="-1.26991785278565E-07"
+        izz="5.69917807641566E-08" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rosorin_description/meshes/pro/gripper/r_out_link.stl" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rosorin_description/meshes/pro/gripper/r_out_link.stl" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="r_out_joint"
+    type="revolute">
+    <origin
+      xyz="-5.9262E-05 -0.018641 0.022215"
+      rpy="0 0 0.0069813" />
+    <parent
+      link="$(arg prefix)r_in_link" />
+    <child
+      link="$(arg prefix)r_out_link" />
+    <axis
+      xyz="0.99997 -0.0069812 0.0026676" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="1000"
+      velocity="10" />
+    <mimic
+      joint="r_joint"
+      multiplier="-1"
+      offset="0" />
+  </joint>
+
+</robot>

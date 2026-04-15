@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="common" xmlns:xacro="http://ros.org/wiki/xacro" >
+  <xacro:arg name="prefix" default="" />
+
+  <link
+    name="$(arg prefix)back_shell_black_link">
+    <inertial>
+      <origin
+        xyz="-0.128102112274456 1.72211525746893E-05 0.0928043689724126"
+        rpy="0 0 0" />
+      <mass
+        value="0.275421428635453" />
+      <inertia
+        ixx="0.000628323854310952"
+        ixy="8.12787450972555E-08"
+        ixz="-5.57405274002875E-05"
+        iyy="0.000218971510417661"
+        iyz="1.78950516503852E-07"
+        izz="0.000550804966985301" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rosorin_description/meshes/pro/common/back_shell_black_link.stl" />
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rosorin_description/meshes/pro/common/back_shell_black_link_collision.stl" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="back_shell_black_joint"
+    type="fixed">
+    <origin
+      xyz="-0.00800423021156377 0.000186898416208928 0"
+      rpy="0 0 0" />
+    <parent
+      link="$(arg prefix)base_link" />
+    <child
+      link="$(arg prefix)back_shell_black_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+  <link
+    name="$(arg prefix)back_shell_green_link">
+    <inertial>
+      <origin
+        xyz="0.0307901265873789 -0.000113109105123149 0.020162111142601"
+        rpy="0 0 0" />
+      <mass
+        value="0.186020370555428" />
+      <inertia
+        ixx="0.000313865003161158"
+        ixy="2.65289062493475E-07"
+        ixz="1.61671612029607E-05"
+        iyy="0.00101596189150751"
+        iyz="-6.02076716251901E-08"
+        izz="0.00128044252632698" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rosorin_description/meshes/pro/common/back_shell_green_link.stl" />
+      </geometry>
+      <material name="green"/>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rosorin_description/meshes/pro/common/back_shell_green_link_collision.stl" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="back_shell_green_joint"
+    type="fixed">
+    <origin
+      xyz="-0.0080042 0.0001869 0"
+      rpy="0 0 0" />
+    <parent
+      link="$(arg prefix)base_link" />
+    <child
+      link="$(arg prefix)back_shell_green_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+</robot>

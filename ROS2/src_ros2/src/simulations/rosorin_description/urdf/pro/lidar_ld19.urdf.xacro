@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="lidar" xmlns:xacro="http://ros.org/wiki/xacro" >
+  <xacro:arg name="prefix" default="" />
+  <xacro:property name="M_PI" value="3.1415926535897931"/>
+
+  <link name="$(arg prefix)lidar_frame">
+    <inertial>
+      <origin
+        xyz="0.000108272881438547 0.000207778482328322 -0.0259979873399523"
+        rpy="0 0 0" />
+      <mass
+        value="0.0222221884545253" />
+      <inertia
+        ixx="2.86596904176027E-06"
+        ixy="-1.446571060778E-07"
+        ixz="1.97432308518389E-09"
+        iyy="2.97121650480506E-06"
+        iyz="1.02426609298088E-08"
+        izz="5.05108782428573E-06" />
+    </inertial>
+
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rosorin_description/meshes/pro/common/lidar_link.stl" />
+      </geometry>
+      <material name="black">
+        <color rgba="0.1 0.1 0.1 1" />
+      </material>
+    </visual>
+
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rosorin_description/meshes/pro/common/lidar_link.stl" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="lidar_joint" type="fixed">
+    <origin
+      xyz="0.048156 7.5552E-05 0.106748"
+      rpy="0 0 3.1416" />
+    <parent link="$(arg prefix)base_link" />
+    <child link="$(arg prefix)lidar_frame" />
+    <axis xyz="0 0 0" />
+  </joint>
+</robot>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="rosorinpro" xmlns:xacro="http://ros.org/wiki/xacro">
+    <xacro:arg name="prefix" default="" />
+    <xacro:property name="lidar"        value="$(env LIDAR_TYPE)"/>
+    <xacro:property name="machine"      value="$(env MACHINE_TYPE)"/>
+
+    <xacro:include filename="$(find rosorin_description)/urdf/pro/inertial_matrix.xacro" />
+
+    <xacro:include filename="$(find rosorin_description)/urdf/pro/car_mecanum.urdf.xacro"/>
+
+    <xacro:if value="${lidar == 'MS200'}">
+        <xacro:include filename="$(find rosorin_description)/urdf/pro/lidar_ms200.urdf.xacro"/>
+    </xacro:if>
+
+    <xacro:if value="${lidar == 'LD19'}">
+        <xacro:include filename="$(find rosorin_description)/urdf/pro/lidar_ld19.urdf.xacro"/>
+    </xacro:if>
+
+    <xacro:if value="${lidar == 'SCLIDAR'}">
+        <xacro:include filename="$(find rosorin_description)/urdf/pro/lidar.urdf.xacro"/>
+    </xacro:if>
+
+    <xacro:include filename="$(find rosorin_description)/urdf/pro/imu.urdf.xacro"/>
+    <xacro:include filename="$(find rosorin_description)/urdf/pro/depth_camera.urdf.xacro"/>
+    <!-- <xacro:include filename="$(find rosorin_description)/urdf/pro/common.urdf.xacro"/> -->
+    <!-- <xacro:include filename="$(find rosorin_description)/urdf/pro/connect.urdf.xacro"/> -->
+    <xacro:include filename="$(find rosorin_description)/urdf/pro/arm.urdf.xacro"/>
+    <xacro:include filename="$(find rosorin_description)/urdf/pro/gripper.urdf.xacro"/>
+</robot>

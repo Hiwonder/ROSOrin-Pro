@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="depth_camera" xmlns:xacro="http://ros.org/wiki/xacro" >
+  <xacro:arg name="prefix" default="" />
+  <xacro:property name="M_PI"   value="3.1415926535897931"/>
+
+  <link
+    name="$(arg prefix)camera_link0">
+    <inertial>
+      <origin
+        xyz="0.00100057615929594 1.44605534389223E-07 1.72427634361517E-05"
+        rpy="0 0 0" />
+      <mass
+        value="0.00214314154275933" />
+      <inertia
+        ixx="6.71206631524409E-07"
+        ixy="2.63926007533042E-11"
+        ixz="2.74382798718986E-09"
+        iyy="1.80398903028185E-07"
+        iyz="2.56942330882973E-09"
+        izz="4.92322343252228E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rosorin_description/meshes/pro/arm/camera_connect_link.stl" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rosorin_description/meshes/pro/arm/camera_connect_link.stl" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="camera_connect_joint"
+    type="fixed">
+    <origin
+      xyz="-0.036369 -0.0181 0.046638"
+      rpy="-1.5621 -1.5621 1.5708" />
+    <parent
+      link="$(arg prefix)link4" />
+    <child
+      link="$(arg prefix)camera_link0" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+  <link
+    name="$(arg prefix)camera_link">
+    <inertial>
+      <origin
+        xyz="-0.0104111613223142 0.00065478513128311 -0.000176533763583344"
+        rpy="0 0 0" />
+      <mass
+        value="0.00987601981944819" />
+      <inertia
+        ixx="6.06474620230947E-06"
+        ixy="6.71140396207728E-09"
+        ixz="2.66834042514805E-09"
+        iyy="6.67626406550825E-07"
+        iyz="4.50123409985515E-08"
+        izz="5.75254791481401E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rosorin_description/meshes/pro/arm/camera_link.stl" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rosorin_description/meshes/pro/arm/camera_link.stl" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="camera_joint"
+    type="fixed">
+    <origin
+      xyz="0.022511 -0.0010257 0.0051917"
+      rpy="0 0 0" />
+    <parent
+      link="$(arg prefix)camera_link0" />
+    <child
+      link="$(arg prefix)camera_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+  <link name="$(arg prefix)depth_cam_frame" />
+  <joint
+    name="depth_cam_joint_sim"
+    type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="${-M_PI/2} 0 ${-M_PI/2}" />
+    <parent
+      link="$(arg prefix)camera_link" />
+    <child
+      link="$(arg prefix)depth_cam_frame" />
+  </joint>
+
+</robot>

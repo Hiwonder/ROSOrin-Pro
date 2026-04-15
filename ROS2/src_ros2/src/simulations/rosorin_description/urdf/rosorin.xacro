@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="car" xmlns:xacro="http://ros.org/wiki/xacro">
+    <xacro:property name="machine"      value="$(env MACHINE_TYPE)"/>
+    <xacro:if value="${machine == 'ROSOrin_Mecanum'}">
+        <xacro:include filename="$(find rosorin_description)/urdf/mecanum.xacro"/>
+    </xacro:if>
+    <xacro:if value="${machine == 'ROSOrin_Acker'}">
+        <xacro:include filename="$(find rosorin_description)/urdf/acker.xacro"/>
+    </xacro:if>
+    <xacro:if value="${machine ==  'ROSOrin_Differential'}">
+        <xacro:include filename="$(find rosorin_description)/urdf/differential.xacro"/>
+    </xacro:if>
+    <xacro:include filename="$(find rosorin_description)/urdf/materials.xacro" />
+    <xacro:if value="${machine ==  'ROSOrin_Mecanum_Pro'}">
+        <xacro:include filename="$(find rosorin_description)/urdf/pro/rosorinpro.xacro"/>
+    </xacro:if>
+</robot>

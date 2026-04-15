@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<robot name="rosorin" xmlns:xacro="http://ros.org/wiki/xacro">
+    <xacro:property name="M_PI" value="3.1415926535897931"/>
+    <xacro:include filename="$(find rosorin_description)/urdf/rosorin.xacro"/>
+    <gazebo>
+        <plugin name="gazebo_controller" filename="libgazebo_ros_planar_move.so">
+            <commandTopic>controller/cmd_vel</commandTopic>
+            <odometryTopic>odom</odometryTopic>
+            <odometryFrame>$(arg odom_frame)</odometryFrame>
+            <odometryRate>20.0</odometryRate>
+            <robotBaseFrame>$(arg base_frame)</robotBaseFrame>
+        </plugin>
+    </gazebo>
+
+    <gazebo reference="lidar_sim_frame">
+      <sensor type="ray" name="lidar">
+        <pose>0 0 0 0 0 ${M_PI}</pose>
+        <visualize>false</visualize>
+        <update_rate>5</update_rate>
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>360</samples>
+              <resolution>1</resolution>
+              <min_angle>0</min_angle>
+              <max_angle>6.2832</max_angle>
+            </horizontal>
+          </scan>
+          <range>
+            <min>0.15</min>
+            <max>12</max>
+            <resolution>0.015</resolution>
+          </range>
+          <noise>
+            <type>gaussian</type>
+            <mean>0.0</mean>
+            <stddev>0.01</stddev>
+          </noise>
+        </ray>
+        <plugin name="gazebo_rplidar" filename="libgazebo_ros_laser.so">
+          <topicName>scan</topicName>
+          <frameName>$(arg lidar_frame)</frameName>
+        </plugin>
+      </sensor>
+    </gazebo>
+
+  <gazebo>
+    <plugin name="imu_plugin" filename="libgazebo_ros_imu.so">
+      <alwaysOn>true</alwaysOn>
+      <bodyName>imu_link</bodyName>
+      <frameName>imu_link</frameName>
+      <topicName>imu_data</topicName>
+      <serviceName>imu_service</serviceName>
+      <gaussianNoise>0.0</gaussianNoise>
+      <updateRate>0</updateRate>
+      <imu>
+        <noise>
+          <type>gaussian</type>
+          <rate>
+            <mean>0.0</mean>
+            <stddev>2e-4</stddev>
+            <bias_mean>0.0000075</bias_mean>
+            <bias_stddev>0.0000008</bias_stddev>
+          </rate>
+          <accel>
+            <mean>0.0</mean>
+            <stddev>1.7e-2</stddev>
+            <bias_mean>0.1</bias_mean>
+            <bias_stddev>0.001</bias_stddev>
+          </accel>
+        </noise>
+      </imu>
+    </plugin>
+  </gazebo>
+
+    <xacro:macro name="model_color" params="link_name color_name">
+        <gazebo reference="${link_name}">
+            <material>Gazebo/${color_name}</material>
+            <turnGravityOff>false</turnGravityOff>
+        </gazebo>
+    </xacro:macro>
+
+    <xacro:model_color link_name="base_link"                color_name="gray"/>
+    <xacro:model_color link_name="lidar_frame"              color_name="black"/>
+    <xacro:model_color link_name="mic_link"                 color_name="black"/>
+    <xacro:model_color link_name="left_back_wheel_link"     color_name="black"/>
+    <xacro:model_color link_name="left_front_wheel_link"    color_name="black"/>
+    <xacro:model_color link_name="right_back_wheel_link"    color_name="black"/>
+    <xacro:model_color link_name="right_front_wheel_link"   color_name="black"/>
+
+</robot>

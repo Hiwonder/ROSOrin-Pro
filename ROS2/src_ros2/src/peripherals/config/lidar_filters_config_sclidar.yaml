@@ -1,0 +1,8 @@
+/**:
+  ros__parameters:
+    filter1:
+      name: angle
+      type: laser_filters/LaserScanAngularBoundsFilter
+      params:
+        lower_angle: 1.25
+        upper_angle: 5.08

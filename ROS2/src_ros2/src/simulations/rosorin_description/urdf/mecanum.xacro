@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="car" xmlns:xacro="http://ros.org/wiki/xacro" >
+  <!-- <xacro:property name="camera_type"    value="$(env DEPTH_CAMERA_TYPE)"/>
+  <xacro:include filename="$(find rosorin_description)/urdf/materials.xacro"/> -->
+  <link name="base_footprint"/>
+
+  <joint name="base_joint" type="fixed">
+    <parent link="base_footprint"/>
+    <child link="base_link"/>
+    <origin xyz="0.0 0.0 0.028" rpy="0 0 0"/>
+  </joint>
+
+  <link name="imu_link"/>
+
+  <joint name="imu_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="imu_link"/>
+    <origin xyz="0.04 -0.015 0.05" rpy="0 0 1.57"/>
+  </joint>
+
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="-0.0132151762477841 0.000229447110994733 0.0437668667969873"
+        rpy="0 0 0" />
+      <mass
+        value="0.556763318161172" />
+      <inertia
+        ixx="0.000437925309078705"
+        ixy="-9.08809720899858E-07"
+        ixz="3.70200457919012E-05"
+        iyy="0.000901865125007191"
+        iyz="8.37677372114877E-10"
+        izz="0.00107357991072818" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rosorin_description/meshes/base_link_mec.stl" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.7 0.7 0.7 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rosorin_description/meshes/base_link_mec.stl" />
+      </geometry>
+    </collision>
+  </link>
+
+
+  <link name="lidar_frame"/>
+  <joint
+    name="lidar"
+    type="fixed">
+    <origin
+      xyz="0.011476 7.415E-05 0.13641"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="lidar_frame" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+  <link name="lidar_sim_frame" />
+  <joint
+    name="lidar_sim_frame_joint"
+    type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <parent link="lidar_frame" />
+    <child link="lidar_sim_frame" />
+  </joint>
+
+  <link name="camera_link0"/>
+
+  <joint
+    name="depth_camera"
+    type="fixed">
+    <origin
+      xyz="0.057373 7.9091E-05 0.091864"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="camera_link0" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+
+
+</robot>

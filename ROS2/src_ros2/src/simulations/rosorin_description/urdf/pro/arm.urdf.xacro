@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="arm" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:arg name="prefix" default="" />
+  <xacro:property name="M_PI"   value="3.1415926535897931"/>
+
+  <link
+    name="$(arg prefix)link1">
+    <inertial>
+      <origin
+        xyz="6.49037759326426E-05 0.00239407542452911 0.0110195047829908"
+        rpy="0 0 0" />
+      <mass
+        value="0.010597277181335" />
+      <inertia
+        ixx="1.46240263881777E-06"
+        ixy="-4.78262881626278E-09"
+        ixz="7.11910436984689E-09"
+        iyy="1.81010848614845E-06"
+        iyz="-2.88588688247835E-08"
+        izz="1.87119457153925E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find rosorin_description)/meshes/pro/arm/link1.stl" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find rosorin_description)/meshes/pro/arm/link1.stl" />
+      </geometry>
+    </collision>
+  </link>
+
+  <gazebo reference="$(arg prefix)base_link">
+    <material>Gazebo/Grey</material>
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <self_collide>false</self_collide>
+  </gazebo>
+
+  <joint
+    name="joint1"
+    type="revolute">
+    <origin
+      xyz="0.04662 7.5437E-05 0.16044"
+      rpy="0.0087266 0 0" />
+    <parent
+      link="$(arg prefix)base_link" />
+    <child
+      link="$(arg prefix)link1" />
+    <axis
+      xyz="-5.4513E-05 -0.0087266 -0.99996" />
+    <limit
+      lower="-2.09"
+      upper="2.09"
+      effort="1000"
+      velocity="10" />
+  </joint>
+
+  <link
+    name="$(arg prefix)link2">
+    <inertial>
+      <origin
+        xyz="0.000202046656795941 -0.0165522680567203 0.0481618179233159"
+        rpy="0 0 0" />
+      <mass
+        value="0.0136322197327749" />
+      <inertia
+        ixx="3.65656868148961E-06"
+        ixy="-4.89058741962216E-09"
+        ixz="3.19797719203556E-09"
+        iyy="3.1366082581851E-06"
+        iyz="-3.55846346498633E-08"
+        izz="2.4183678227792E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find rosorin_description)/meshes/pro/arm/link2.stl" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find rosorin_description)/meshes/pro/arm/link2.stl" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="joint2"
+    type="revolute">
+    <origin
+      xyz="1.2011E-05 0.018766 0.030345"
+      rpy="0 0 0" />
+    <parent
+      link="$(arg prefix)link1" />
+    <child
+      link="$(arg prefix)link2" />
+    <axis
+      xyz="0 0.99996 -0.0087265" />
+    <limit
+      lower="-2.09"
+      upper="2.09"
+      effort="1000"
+      velocity="10" />
+  </joint>
+
+  <link
+    name="$(arg prefix)link3">
+    <inertial>
+      <origin
+        xyz="-0.000248379360253626 -0.016552274463385 0.0481616278776934"
+        rpy="0 0 0" />
+      <mass
+        value="0.0136322449843806" />
+      <inertia
+        ixx="3.65640771045542E-06"
+        ixy="-4.52089983676596E-09"
+        ixz="1.4805893818475E-08"
+        iyy="3.13662596679787E-06"
+        iyz="-3.5627525860988E-08"
+        izz="2.41855475274639E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find rosorin_description)/meshes/pro/arm/link3.stl" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find rosorin_description)/meshes/pro/arm/link3.stl" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="joint3"
+    type="revolute">
+    <origin
+      xyz="0.00025563 0.00074282 0.08513"
+      rpy="0 0 0" />
+    <parent
+      link="$(arg prefix)link2" />
+    <child
+      link="$(arg prefix)link3" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-2.09"
+      upper="2.09"
+      effort="1000"
+      velocity="10" />
+  </joint>
+
+  <link
+    name="$(arg prefix)link4">
+    <inertial>
+      <origin
+        xyz="0.00401889070001946 -0.0185055710062145 0.0267467820937604"
+        rpy="0 0 0" />
+      <mass
+        value="0.0125542777381369" />
+      <inertia
+        ixx="3.42302406002793E-06"
+        ixy="-8.26448821832188E-09"
+        ixz="-1.3188503984044E-07"
+        iyy="2.90651238927709E-06"
+        iyz="8.54505947394019E-09"
+        izz="3.34228552880687E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find rosorin_description)/meshes/pro/arm/link4.stl" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find rosorin_description)/meshes/pro/arm/link4.stl" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="joint4"
+    type="revolute">
+    <origin
+      xyz="-0.00056892 0.00074297 0.085147"
+      rpy="0 0 0" />
+    <parent
+      link="$(arg prefix)link3" />
+    <child
+      link="$(arg prefix)link4" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-2.09"
+      upper="2.09"
+      effort="1000"
+      velocity="10" />
+  </joint>
+
+  <link
+    name="$(arg prefix)link5">
+    <inertial>
+      <origin
+        xyz="4.95037712668067E-06 9.72914927224386E-09 -0.0020019811095377"
+        rpy="0 0 0" />
+      <mass
+        value="0.00094700314670666" />
+      <inertia
+        ixx="2.17248160164777E-08"
+        ixy="3.02198013430078E-14"
+        ixz="-4.76292817428858E-11"
+        iyy="2.17243959579653E-08"
+        iyz="7.04450794385081E-14"
+        izz="4.04666808778697E-08" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find rosorin_description)/meshes/pro/arm/link5.stl" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find rosorin_description)/meshes/pro/arm/link5.stl" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="joint5"
+    type="revolute">
+    <origin
+      xyz="-0.0010116 -0.018014 0.05577"
+      rpy="0 0 0" />
+    <parent
+      link="$(arg prefix)link4" />
+    <child
+      link="$(arg prefix)link5" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-2.09"
+      upper="2.09"
+      effort="1000"
+      velocity="10" />
+  </joint>
+
+  <link
+    name="$(arg prefix)gripper_link">
+    <inertial>
+      <origin
+        xyz="0.0231313386895878 -0.00393552713010837 -0.0156882339564593"
+        rpy="0 0 0" />
+      <mass
+        value="0.0262978257351592" />
+      <inertia
+        ixx="3.95387110327665E-06"
+        ixy="-1.19832857387574E-12"
+        ixz="2.46427244487644E-12"
+        iyy="1.3233558568295E-06"
+        iyz="1.37213951357202E-08"
+        izz="4.22515071659295E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find rosorin_description)/meshes/pro/arm/gripper_link.stl" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find rosorin_description)/meshes/pro/arm/gripper_link.stl" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="gripper_joint"
+    type="fixed">
+    <origin
+      xyz="0 0 0.0030019"
+      rpy="-3.1416 -1.5681 3.1416" />
+    <parent
+      link="$(arg prefix)link5" />
+    <child
+      link="$(arg prefix)gripper_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+  <link name="$(arg prefix)end_effector_link" />
+
+  <joint name="end_effector_joint" type="fixed">
+    <origin xyz="0 0 0.08" rpy="0 0 0"/>
+    <parent link="$(arg prefix)link5"/>
+    <child link="$(arg prefix)end_effector_link"/>
+  </joint>
+
+</robot>

@@ -1,0 +1,9 @@
+# Pro 保留正前方240°扇形范围角度数据
+/**:
+  ros__parameters:
+    filter1:
+      name: angle
+      type: laser_filters/LaserScanAngularBoundsFilterInPlace
+      params:
+        lower_angle: 1.88
+        upper_angle: 4.25

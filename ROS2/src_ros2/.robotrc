@@ -1,0 +1,41 @@
+#!/bin/bash
+
+source $HOME/ros2_ws/.typerc
+export AUDIODRIVER=alsa
+
+export PATH="/home/ubuntu/.local/bin:$PATH"
+export CUDA_HOME=/usr/local/cuda
+export PATH=$CUDA_HOME/bin:$PATH
+export LD_LIBRARY_PATH=$CUDA_HOME/lib64:$LD_LIBRARY_PATH
+#export LD_PRELOAD=/usr/lib/aarch64-linux-gnu/libgomp.so.1:$LD_PRELOAD
+#export LD_PRELOAD=/home/ubuntu/third_party/Open3D/build/lib/Release/libOpen3D.so
+export ROSDISTRO_INDEX_URL=https://mirrors.tuna.tsinghua.edu.cn/rosdistro/index-v4.yaml
+export working_space=/home/ubuntu
+
+# colcon_cd
+export _colcon_cd_root=$working_space/ros2_ws
+export RCUTILS_COLORIZED_OUTPUT=1
+#source /usr/share/colcon_cd/function/colcon_cd.sh
+
+#node
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+source /opt/ros/humble/local_setup.zsh
+source $working_space/ros2_ws/install/local_setup.zsh
+source $working_space/third_party/third_party_ws/install/local_setup.zsh
+source $working_space/third_party/orbbec_ws/install/local_setup.zsh
+source $working_space/third_party/rtabmap_ws/install/local_setup.zsh
+source $working_space/third_party/gmapping_ws/install/local_setup.zsh
+
+source $working_space/third_party/aurora_ws/install/local_setup.zsh
+export XDG_RUNTIME_DIR="/run/user/$(id -u)"
+export PULSE_SERVER="unix:$XDG_RUNTIME_DIR/pulse/native"
+
+
+source /usr/share/colcon_cd/function/colcon_cd.sh
+export _colcon_cd_root=/opt/ros/humble/
+source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.zsh
+eval "$(register-python-argcomplete3 ros2)"
+eval "$(register-python-argcomplete3 colcon)"
+alias rqt='LD_LIBRARY_PATH="/opt/ros/humble/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/usr/local/cuda/lib64" rqt'
