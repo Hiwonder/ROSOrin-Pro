@@ -63,7 +63,7 @@ With ROSOrin Pro, you can build a complete robotics workflow that spans:
 2. Connect the controller board to the corresponding ROSOrin Pro hardware platform.
 3. Complete the rest of the hardware deployment and host-side setup by following the official documentation.
 
-Refer to the [official documentation](https://docs.hiwonder.com/projects/ROSOrin/en/jetson-orin-nano-version/) for the complete installation and deployment process.
+Refer to the [official documentation](https://wiki.hiwonder.com/projects/rosorin-pro/en/latest/) for the complete installation and deployment process.
 
 ## Repository Structure
 
