@@ -46,7 +46,7 @@ With ROSOrin Pro, you can build a complete robotics workflow that spans:
 
 - **Official Website**: [https://www.hiwonder.com/](https://www.hiwonder.com/)
 - **Product Page**: [https://www.hiwonder.com/products/rosorin-pro](https://www.hiwonder.com/products/rosorin-pro)
-- **Official Documentation**: [https://docs.hiwonder.com/projects/ROSOrin/en/jetson-orin-nano-version/](https://docs.hiwonder.com/projects/ROSOrin/en/jetson-orin-nano-version/)
+- **Official Documentation**: [https://wiki.hiwonder.com/projects/rosorin-pro/en/latest/](https://wiki.hiwonder.com/projects/rosorin-pro/en/latest/)
 - **Technical Support**: support@hiwonder.com
 
 ## Getting Started
