@@ -1,13 +1,3 @@
-# ROSOrin Pro
-
-English | [中文](README_cn.md)
-
-<p align="center">
-  ROS2 Smart Car Platform for Multimodal Perception, Navigation, and Embodied AI
-</p>
-
-## Product Overview
-
 ### About ROSOrin Pro
 
 ROSOrin Pro is our ROS2 smart car platform built for robotics education, embodied AI development, and real-world robot deployment. By combining a high-performance host controller, an STM32 robot controller, LiDAR, 3D vision, and robotic arm execution, ROSOrin Pro provides a practical path from foundational robot control to advanced autonomous interaction.
@@ -15,6 +5,10 @@ ROSOrin Pro is our ROS2 smart car platform built for robotics education, embodie
 This package delivers the controller-side release assets used in the ROSOrin Pro deployment workflow. It is designed to give developers a stable robot-side control foundation while staying aligned with the broader ROSOrin Pro software and hardware ecosystem.
 
 Whether you are building a teaching platform, a lab prototype, or an advanced robotics demo, ROSOrin Pro offers a structured foundation for motion control, peripheral coordination, and integrated robot execution.
+
+<p align="center">
+  <img src="./sources/rosorin pro.png" alt="rosorin pro" width="600"/>
+</p>
 
 ### The Core: A Dual-Controller Architecture Built for Reliable Robot Execution
 
